@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            font-family: 'Papyrus', serif;
+            text-align: center;
+            background-color: #ffe4e1;
+            color: #c2185b;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-top: 50px;
+            color: #d81b60;
+        }
+
+        .message {
+            font-size: 1.5em;
+            margin: 20px 10px;
+            line-height: 1.8;
+            color: #880e4f;
+        }
+
+        .flower {
+            margin: 20px auto;
+            width: 150px;
+        }
+
+        .footer {
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            background-color: #f06292;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+
+        .button:active {
+            transform: scale(1.1);
+            /* Membesar sedikit */
+            background-color: #ec407a;
+            /* Warna berubah saat ditekan */
+        }
+
+        .button:hover {
+            background-color: #ec407a;
+        }
+
+        .love {
+            position: absolute;
+            font-size: 2em;
+            animation: float 2s ease-out forwards;
+            color: #ec407a;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1.5);
+            }
+        }
+
+        #love-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .scroll-content {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-content">
+        <div class="container">
+            <h1>🌸 selamat Ulang Tahun! 🌸 </h1>
+            <p class="message">May your day be as special and wonderful as you are. <br> Sehat dan bahagia selalu ya kamuuu 💖</p>
+            <img class="flower" src="fotozizi.jpg"
+                alt="Beautiful Rose">
+            <p class="message">Tuhan Yesus Memberkati🌟</p>
+        </div>
+        <div class="footer">
+            <a href="#" class="button" onclick="sendHug(event)">Send a Love 💌</a>
+        </div>
+        <div class="container">
+            <h2>🎂 Ada Pantun Nih Buat Kamu 🎂</h2>
+            <p class="message"> bunga mawar tumbuh ditaman <br>
+                wanginya semerbak sampai ke lemari <br>
+                selamat ulang Tahun <br>
+                bahagia selalu setiap hari
+            </p>
+            <p class="message">🎉</p>
+        </div>
+    </div>
+
+    <!-- Container untuk love animations -->
+    <div id="love-container"></div>
+
+    <script>
+        function sendHug(event) {
+            event.preventDefault(); // Mencegah scroll ke atas
+            const loveContainer = document.getElementById('love-container');
+
+            // Loop untuk membuat 10 emoji "love"
+            for (let i = 0; i < 10; i++) {
+                const love = document.createElement('div');
+                love.classList.add('love');
+                love.textContent = '❤️';
+
+                // Posisi acak dalam layar
+                const xPos = Math.random() * window.innerWidth;
+                const yPos = Math.random() * (window.innerHeight - 100) + window.scrollY;
+                love.style.left = `${xPos}px`;
+                love.style.top = `${yPos}px`;
+
+                // Menambahkan emoji ke dalam container
+                loveContainer.appendChild(love);
+
+                // Hapus elemen setelah animasi selesai
+                setTimeout(() => {
+                    love.remove();
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+
+</html>
